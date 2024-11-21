@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Who Episode Sorter</title>
+    <style>
+             body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#season-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.season-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ADD8E6; /* Light blue border */
+    background-color: white;
+    padding: 20px;
+    width: 150px; /* Rectangular shape */
+    height: 20px; /* Rectangular shape */
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, background-color 0.3s;
+    margin: 10px;
+    font-size: 15px; /* Larger text */
+    font-weight: bold;
+}
+
+.season-box:hover {
+    background-color: #f0f8ff; /* Slightly off-white background on hover */
+    transform: translateY(-5px);
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+#pairwise-options button {
+    margin: 10px;
+    min-width: 150px;
+    padding: 20px; /* Larger buttons for better user interaction */
+     width: 200px; /* Rectangular shape */
+    height: 100px; /* Rectangular shape */
+    border: 2px solid #ADD8E6; /* Light blue border */
+    background-color: white;
+    border-radius: 10px;
+    font-size: 18px; /* Increase font size for better readability */
+    cursor: pointer;
+    color: #333; /* Dark text color for better contrast */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#pairwise-options button:hover {
+    background-color: #f0f8ff; /* Slight hover effect */
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+#ranked-list {
+    text-align: left;
+    display: inline-block;
+    padding: 0;
+    margin: 20px auto;
+    list-style-type: decimal;
+    max-width: 400px;
+}
+
+#ranked-list li {
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<body>
+    <h1 style="font-size: 36px; color: #4A90E2; text-align: center; margin-bottom: 20px;">Doctor Who Episode Sorter</h1>
+    
+    <!-- Instructions Section -->
+    <div id="instructions" style="margin-bottom: 40px; background-color: #f7f7f7; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); max-width: 800px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 18px; color: #333; line-height: 1.6; text-align: center; font-family: 'Arial', sans-serif;">
+            <!--<strong style="font-size: 24px; color: #333;">Hello, fellow whovians :) Here's a few instructions on how the sorter works</strong>-->
+            <ul style="list-style-type: none; padding: 0; font-size: 18px; color: #555; margin-top: 20px;">
+                <li><strong>Step 1:</strong> Select the seasons you want to include in the sorting process by checking the boxes next to each season.</li>
+                <br>
+                <li><strong>Step 2:</strong> Click "Start Sorting".</li>
+                      <br>
+                <li><strong>Step 3:</strong> For each pair of episodes, you will choose the one you prefer. You can also mark it as a "Tie" if you can't decide.</li>
+                      <br>
+                <li><strong>Step 4:</strong> Continue until all episodes are sorted. Your final ranking will be displayed at the end!</li>
+                      <br>
+                <li><strong>Step 5:</strong> Refresh if you want to start over!</li>
+                      <br>
+            </ul>
+            <p style="font-size: 16px; color: #888; margin-top: 20px;">Let me know if you want the code (@musicalcompanions on Tumblr)!</p>
+        </p>
+    </div>
+
+    <!-- Rest of your HTML code continues here... -->
+
+    <div id="season-selection">
+        <div class="season-box">
+            <input type="checkbox" value="Season 1" class="season-checkbox">
+            <label>Season 1</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 2" class="season-checkbox">
+            <label>Season 2</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 3" class="season-checkbox">
+            <label>Season 3</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 4" class="season-checkbox">
+            <label>Season 4</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="2009 Specials" class="season-checkbox">
+            <label>2009 Specials</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Season 5" class="season-checkbox">
+            <label>Season 5</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Season 6" class="season-checkbox">
+            <label>Season 6</label>
+        </div>
+         <div class="season-box">
+           <input type="checkbox" value="Season 7" class="season-checkbox">
+            <label>Season 7</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 8" class="season-checkbox">
+            <label>Season 8</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 9" class="season-checkbox">
+            <label>Season 9</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 10" class="season-checkbox">
+            <label>Season 10</label>
+        </div>
+        <div class="season-box">
+            <input type="checkbox" value="Season 11" class="season-checkbox">
+            <label>Season 11</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Season 12" class="season-checkbox">
+            <label>Season 12</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Season 13" class="season-checkbox">
+            <label>Season 13</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Season 14" class="season-checkbox">
+            <label>Season 14</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Easter/Christmas/New Year's Specials" class="season-checkbox">
+            <label>Easter/Christmas/New Year's Specials</label>
+        </div>
+         <div class="season-box">
+            <input type="checkbox" value="Anniversary Specials (50th/ 60th/BBC 100th)" class="season-checkbox">
+            <label>Anniversary Specials (50th/ 60th/BBC 100th)</label>
+        </div>
+    </div>
+    <button onclick="startSorting()">Start Sorting</button>
+
+    <div id="pairwise-sorter" class="hidden">
+        <h2>Which episode do you prefer?</h2>
+        <div id="pairwise-options">
+            <button id="option1" onclick="chooseOption(0)"></button>
+            <button id="option2" onclick="chooseOption(1)"></button>
+            <button id="tie" onclick="chooseOption(-1)">Tie</button>
+        </div>
+    </div>
+
+    <div id="results" class="hidden">
+        <h2>Your Ranked Episodes:</h2>
+        <ol id="ranked-list"></ol>
+    </div>
+
+    <script>
+        const episodesBySeason = {
+         "Season 1": ["Rose", "The End of the World", "The Unquiet Dead", "Aliens of London", "World War Three", "Dalek", "The Long Game", "Father's Day", "The Empty Child", "The Doctor Dances", "Boom Town", "Bad Wolf", "The Parting of the Ways"],
+    "Season 2": ["New Earth", "Tooth and Claw", "School Reunion", "The Girl in the Fireplace", "Rise of the Cybermen", "The Age of Steel", "The Idiot's Lantern", "The Impossible Planet", "The Satan Pit", "Love & Monsters", "Fear Her", "Army of Ghosts", "Doomsday"],
+    "Season 3": ["Smith and Jones", "The Shakespeare Code", "Gridlock", "Daleks in Manhattan", "Evolution of the Daleks", "The Lazarus Experiment", "42", "Human Nature", "The Family of Blood", "Blink", "Utopia", "The Sound of Drums", "Last of the Time Lords"],
+    "Season 4": ["Partners in Crime", "The Fires of Pompeii", "Planet of the Ood", "The Sontaran Stratagem", "The Poison Sky", "The Doctor's Daughter", "The Unicorn and the Wasp", "Silence in the Library", "Forest of the Dead", "Midnight", "Turn Left", "The Stolen Earth", "Journey's End"],
+    "2009 Specials": ["Planet of the Dead", "The Waters of Mars", "The End of Time - Part One", "The End of Time - Part Two"],
+    "Season 5": ["The Eleventh Hour", "The Beast Below", "Victory of the Daleks", "The Time of Angels", "Flesh and Stone", "The Vampires of Venice", "Amy's Choice", "The Hungry Earth", "Cold Blood", "Vincent and the Doctor", "The Lodger", "The Pandorica Opens", "The Big Bang"],
+    "Season 6": ["The Impossible Astronaut", "Day of the Moon", "The Curse of the Black Spot", "The Doctor's Wife", "The Rebel Flesh", "The Almost People", "A Good Man Goes to War", "Let's Kill Hitler", "Night Terrors", "The Girl Who Waited", "The God Complex", "Closing Time", "The Wedding of River Song"],
+    "Season 7": ["Asylum of the Daleks", "Dinosaurs On A Spaceship", "A Town Called Mercy", "The Power Of Three", "The Angels Take Manhattan", "The Bells of Saint John", "The Rings Of Akhaten", "Cold War", "Hide", "Journey to the Centre of the TARDIS", "The Crimson Horror", "Nightmare in Silver", "The Name of the Doctor"],
+    "Season 8": ["Deep Breath", "Into The Dalek", "Robot Of Sherwood", "Listen", "Time Heist", "The Caretaker", "Kill the Moon", "Mummy on the Orient Express", "Flatline", "In the Forest of the Night", "Dark Water", "Death in Heaven"],
+    "Season 9": ["The Magician’s Apprentice", "The Witch’s Familiar", "Under The Lake", "Before The Flood", "The Girl Who Died", "The Woman Who Lived", "The Zygon Invasion", "The Zygon Inversion", "Sleep No More", "Face The Raven", "Heaven Sent", "Hell Bent"],
+    "Season 10": ["The Pilot", "Smile", "Thin Ice", "Knock Knock", "Oxygen", "Extremis", "The Pyramid at the End of the World", "The Lie of the Land", "Empress of Mars", "The Eaters of Light", "World Enough and Time", "The Doctor Falls"],
+    "Season 11": ["The Woman Who Fell to Earth", "The Ghost Monument", "Rosa", "Arachnids in the UK", "The Tsuranga Conundrum", "Demons of the Punjab", "Kerblam!", "The Witchfinders", "It Takes You Away", "The Battle of Ranskoor Av Kolos"],
+    "Season 12": ["Spyfall - Part One", "Spyfall - Part Two", "Orphan 55", "Nikola Tesla’s Night of Terror", "Fugitive of the Judoon", "Praxeus", "Can You Hear Me?", "The Haunting of Villa Diodati", "Ascension of the Cybermen", "The Timeless Children"],
+    "Season 13": ["The Halloween Apocalypse", "War of the Sontarans", "Once, Upon Time", "Village of the Angels", "Survivors of the Flux", "The Vanquishers"],
+    "Season 14": ["Space Babies", "The Devil's Chord", "Boom", "73 Yards", "Dot and Bubble", "Rogue", "The Legend of Ruby Sunday", "Empire of Death"],
+    "Easter/Christmas/New Year's Specials": ["The Christmas Invasion", "The Runaway Bride", "Voyage of the Damned", "The Next Doctor", "A Christmas Carol", "The Doctor The Widow and The Wardrobe", "The Snowmen", "The Time of the Doctor", "Last Christmas", "The Husbands of River Song", "The Return of Doctor Mysterio", "Twice Upon a Time", "Resolution", "Revolution of the Daleks", "Eve of the Daleks", "Legend of the Sea Devils", "The Church on Ruby Road"],
+    "Anniversary Specials (50th/ 60th/BBC 100th)": ["The Day of the Doctor", "The Power of the Doctor", "The Star Beast", "Wild Blue Yonder", "The Giggle"]
+        };
+
+        let selectedEpisodes = [];
+        let comparisonStack = [];
+        let sortedList = [];
+        
+        function startSorting() {
+    const checkboxes = document.querySelectorAll(".season-checkbox");
+    selectedEpisodes = [];
+
+    checkboxes.forEach(box => {
+        if (box.checked) {
+            selectedEpisodes = selectedEpisodes.concat(episodesBySeason[box.value]);
+        }
+    });
+
+    if (selectedEpisodes.length < 2) {
+        alert("Please select at least one season!");
+        return;
+    }
+
+    document.getElementById("season-selection").style.display = "none";
+    document.querySelector("button").style.display = "none"; // Hide the "Start Sorting" button
+    document.getElementById("instructions").style.display = "none";
+
+    comparisonStack = [[...selectedEpisodes]];
+    sortedList = [];
+    sortNextPair();
+}
+
+        function sortNextPair() {
+            if (comparisonStack.length === 0) {
+                showResults();
+                return;
+            }
+
+            const current = comparisonStack.pop();
+            if (current.length === 1) {
+                sortedList.push(current[0]);
+                sortNextPair();
+                return;
+            }
+
+            const mid = Math.floor(current.length / 2);
+            const left = current.slice(0, mid);
+            const right = current.slice(mid);
+
+            comparisonStack.push(left, right);
+
+            const leftEpisode = left[0];
+            const rightEpisode = right[0];
+
+            document.getElementById("pairwise-sorter").classList.remove("hidden");
+            document.getElementById("option1").textContent = leftEpisode;
+            document.getElementById("option2").textContent = rightEpisode;
+        }
+
+        function chooseOption(choice) {
+            const current = comparisonStack.pop();
+            const mid = Math.floor(current.length / 2);
+            const left = current.slice(0, mid);
+            const right = current.slice(mid);
+
+            if (choice === 0) {
+                sortedList.push(...left);
+                if (right.length > 0) comparisonStack.push(right);
+            } else if (choice === 1) {
+                sortedList.push(...right);
+                if (left.length > 0) comparisonStack.push(left);
+            } else if (choice === -1) { // Tie
+                sortedList.push([left[0], right[0]]); // Group tied episodes as an array
+                if (left.length > 1) comparisonStack.push(left.slice(1));
+                if (right.length > 1) comparisonStack.push(right.slice(1));
+            }
+
+            sortNextPair();
+        }
+
+function showResults() {
+    document.getElementById("pairwise-sorter").classList.add("hidden");
+    document.getElementById("results").classList.remove("hidden");
+
+    const list = document.getElementById("ranked-list");
+    list.innerHTML = ""; // Clear previous results
+
+    sortedList.forEach((item, index) => {
+        const listItem = document.createElement("li");
+
+        // Check if the item is an array (indicating tied episodes)
+        if (Array.isArray(item)) {
+            listItem.textContent = item.join(" & ") + " (Tied)";
+        } else {
+            listItem.textContent = item;
+        }
+
+        list.appendChild(listItem);
+    });
+}
+    </script>
+</body>
+</html>
